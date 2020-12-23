@@ -34,13 +34,22 @@ def upload():
         img = cv2.imdecode(img_array, 1)
 
         # 変換
-        img = canny(img)
-
+        img1, img2, img3 = canny(img)  #変更した
+        
         # 保存
         dt_now = datetime.now().strftime("%Y_%m_%d%_H_%M_%S_") + random_str(5)
         save_path = os.path.join(SAVE_DIR, dt_now + ".png")
-        cv2.imwrite(save_path, img)
+        cv2.imwrite(save_path, img1)
 
+        dt_now = datetime.now().strftime("%Y_%m_%d%_H_%M_%S_") + random_str(5)  #追加した
+        save_path = os.path.join(SAVE_DIR, dt_now + ".png")
+        cv2.imwrite(save_path, img2)
+
+        dt_now = datetime.now().strftime("%Y_%m_%d%_H_%M_%S_") + random_str(5) #追加した
+        save_path = os.path.join(SAVE_DIR, dt_now + ".png")
+        cv2.imwrite(save_path, img3)
+
+       
         print("save", save_path)
 
         return redirect('/')
